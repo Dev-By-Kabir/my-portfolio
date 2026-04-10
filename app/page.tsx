@@ -19,14 +19,14 @@ export default function Home() {
         setShowName(true);
     }, 8500);
 
-    // Swap text to title after Name finishes its 3s flash (Total: 11.5s)
+    // Swap text to title after Name finishes its 2s flash (Total: 10.5s)
     const titleTimer = setTimeout(() => {
         setShowName(false);
         setShowTitle(true);
-    }, 11500);
+    }, 10500);
     
-    // Complete entire intro sequence revealing the portfolio (Total: 13.5s)
-    const removeTimer = setTimeout(() => setShowIntro(false), 13500);
+    // Complete entire intro sequence revealing the portfolio (Total: 12.5s)
+    const removeTimer = setTimeout(() => setShowIntro(false), 12500);
     
     return () => {
       clearTimeout(progressTimer);
@@ -46,24 +46,13 @@ export default function Home() {
       {/* Cinematic Text Flashes overlaid on black after warp */}
       <div className={`fixed inset-0 z-[500] bg-[#020202] flex flex-col items-center justify-center transition-opacity duration-1000 ${showIntro && warpEnded ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
         {showName && (
-            <h1 className="text-5xl md:text-7xl lg:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-blue-200 drop-shadow-[0_0_40px_rgba(255,255,255,1)] absolute text-center uppercase tracking-tight flex justify-center">
-              {"KABIR PATEL".split("").map((char, index) => (
-                <span 
-                  key={index} 
-                  className="falling-letter"
-                  style={{ 
-                    animationDelay: `${index * 0.12}s`,
-                    marginRight: char === ' ' ? '1rem' : '0'
-                  }}
-                >
-                  {char === ' ' ? '\u00A0' : char}
-                </span>
-              ))}
+            <h1 className="text-5xl md:text-7xl lg:text-9xl font-black text-white drop-shadow-[0_0_40px_rgba(255,255,255,1)] absolute text-center uppercase tracking-tight animate-title-flash w-full px-4 overflow-hidden">
+              KABIR PATEL
             </h1>
         )}
         {showTitle && (
             <h2 className="text-xl md:text-3xl lg:text-5xl font-sans font-light text-white tracking-[0.2em] md:tracking-[0.3em] animate-title-flash absolute text-center uppercase w-full px-4 overflow-hidden">
-              SOFTWARE <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-blue-500 drop-shadow-[0_0_20px_rgba(0,243,255,0.8)]">ENGINEER</span>
+              SOFTWARE <span className="font-bold text-neon-blue drop-shadow-[0_0_20px_rgba(0,243,255,0.8)]">ENGINEER</span>
             </h2>
         )}
       </div>
@@ -138,11 +127,13 @@ export default function Home() {
               <span className="text-xs font-mono text-neon-blue uppercase tracking-widest">Available for Work</span>
             </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
-              I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-blue-500 drop-shadow-[0_0_30px_rgba(0,243,255,0.6)]">Kabir Patel</span> <br />
-              Crafting <span className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">Spatial</span> & Web <br /> Experiences
+              Hi, I’m <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-blue-500 drop-shadow-[0_0_30px_rgba(0,243,255,0.6)]">Kabir Patel</span> <br />
+              <span className="text-3xl md:text-4xl lg:text-5xl font-bold text-white/90 drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] block mt-4">
+                Full Stack Developer & <br className="hidden lg:block" /> Machine Learning Enthusiast
+              </span>
             </h1>
-            <p className="text-lg text-gray-400 max-w-md font-light">
-              I am a computer science student specializing in frontend development, 3D web interfaces, and complex algorithmic logic.
+            <p className="text-lg text-gray-400 max-w-lg font-light mt-6 leading-relaxed">
+              I build modern web applications and explore intelligent systems using React, Next.js, and machine learning.
             </p>
             <div className="flex gap-4 mt-4">
               <button className="px-8 py-3 bg-neon-blue text-black font-semibold rounded-lg hover:shadow-[0_0_30px_rgba(0,243,255,0.8)] transition-all hover:-translate-y-1">
