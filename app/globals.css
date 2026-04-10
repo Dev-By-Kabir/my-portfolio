@@ -1,26 +1,125 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --neon-blue: #00f3ff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-neon-blue: var(--neon-blue);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Custom scrollbar to add to the code-editor feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px; /* For horizontal scrollbars */
+}
+::-webkit-scrollbar-track {
+  background: #1e1e1e;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Utilities */
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+/* Hyperdrive Stretch Lines - Star Wars Lightspeed Style */
+@keyframes hyperspace-stretch {
+  0% { transform: rotate(var(--rot)) translateY(-50px) scaleY(0.1); opacity: 0; }
+  10% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: rotate(var(--rot)) translateY(1800px) scaleY(40); opacity: 0; }
+}
+
+.hyper-streak {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 20px;
+  /* Glowing gradient to simulate lightspeed distortion */
+  background: linear-gradient(to bottom, transparent, #ffffff, #00f3ff, transparent);
+  border-radius: 50%;
+  opacity: 0;
+  will-change: transform, opacity;
+  transform-origin: 50% 100%;
+}
+
+.warp-active .hyper-streak {
+  animation: hyperspace-stretch var(--dur) ease-in infinite;
+  animation-delay: var(--delay);
+}
+
+/* Whiteout flash bang */
+@keyframes whiteout {
+  0% { opacity: 0; }
+  40% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.animate-whiteout {
+  animation: whiteout 1.5s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
+  animation-delay: 6s; /* Failsafe if not manually timed */
+  will-change: opacity;
+}
+
+@keyframes whiteout-fast {
+  0% { opacity: 0; }
+  20% { opacity: 1; background-color: white;}
+  100% { opacity: 0; background-color: transparent;}
+}
+
+.animate-whiteout-fast {
+  animation: whiteout-fast 1s ease-out forwards;
+}
+
+@keyframes flash-text {
+  0% { opacity: 0; filter: blur(20px) brightness(3); transform: scale(0.8); }
+  20% { opacity: 1; filter: blur(0px) brightness(1); transform: scale(1); }
+  80% { opacity: 1; filter: blur(0px) brightness(1); transform: scale(1.05); }
+  100% { opacity: 0; filter: blur(30px) brightness(0.5); transform: scale(1.3); }
+}
+
+/* Cinematic Falling Letters Physics Sequence */
+@keyframes drop-bounce {
+  0% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+  60% { transform: translateY(20px) scale(0.9); opacity: 1; }
+  85% { transform: translateY(-5px) scale(1.05); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; filter: blur(0); }
+}
+
+.falling-letter {
+  display: inline-block;
+  opacity: 0;
+  animation: drop-bounce 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.animate-title-flash {
+  animation: flash-text 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  will-change: transform, opacity, filter;
 }
