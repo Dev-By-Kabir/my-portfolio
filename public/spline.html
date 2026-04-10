@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spline Sandbox</title>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: transparent; overflow: hidden; }
+        spline-viewer { width: 100%; height: 100%; }
+    </style>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.81/build/spline-viewer.js"></script>
+</head>
+<body>
+    <spline-viewer loading-anim-type="none" id="viewer"></spline-viewer>
+    <script>
+        // Use standard JS to grab the target URL from the iframe src and attach it to the viewer safely
+        const urlParams = new URLSearchParams(window.location.search);
+        const sceneUrl = urlParams.get('url');
+        if (sceneUrl) {
+            document.getElementById('viewer').setAttribute('url', sceneUrl);
+        }
+        
+        // Aggressively remove default Spline Logo watermark via Shadow DOM injection
+        setInterval(() => {
+            const viewer = document.getElementById('viewer');
+            if (viewer && viewer.shadowRoot) {
+                const logo = viewer.shadowRoot.querySelector('#logo');
+                if (logo) logo.remove();
+            }
+        }, 300);
+    </script>
+</body>
+</html>
