@@ -77,13 +77,13 @@ export default function Home() {
       {/* Cinematic Text Flashes overlaid on black after warp */}
       <div className={`fixed inset-0 z-[500] bg-[#020202] flex flex-col items-center justify-center transition-opacity duration-1000 ${showIntro && warpEnded ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
         {showName && (
-            <h1 className="text-5xl md:text-7xl lg:text-9xl font-black text-white drop-shadow-[0_0_40px_rgba(255,255,255,1)] absolute text-center uppercase tracking-tight animate-title-flash w-full px-4 overflow-hidden">
+            <h1 className="text-xl md:text-3xl lg:text-5xl font-black text-white drop-shadow-[0_0_40px_rgba(255,255,255,1)] absolute text-center uppercase tracking-[0.2em] md:tracking-[0.3em] animate-title-flash w-full px-4 overflow-hidden">
               KABIR PATEL
             </h1>
         )}
         {showTitle && (
             <h2 className="text-xl md:text-3xl lg:text-5xl font-sans font-light text-white tracking-[0.2em] md:tracking-[0.3em] animate-title-flash absolute text-center uppercase w-full px-4 overflow-hidden">
-              SOFTWARE <span className="font-bold text-neon-blue drop-shadow-[0_0_20px_rgba(0,243,255,0.8)]">ENGINEER</span>
+              SOFTWARE <span className="font-bold text-neon-blue drop-shadow-[0_0_20px_rgba(0,243,255,0.8)]">DEVELOPER</span>
             </h2>
         )}
       </div>
@@ -182,15 +182,15 @@ export default function Home() {
               </span>
             </h1>
             <p className="text-lg text-gray-400 max-w-lg font-light mt-6 leading-relaxed">
-              I build modern web applications and explore intelligent systems using React, Next.js, and machine learning.
+              I build modern web applications and explore intelligent systems using <span className="text-neon-blue font-medium">React</span>, <span className="text-neon-blue font-medium">Next.js</span>, and machine learning.
             </p>
             <div className="flex gap-4 mt-4">
-              <button className="px-8 py-3 bg-neon-blue text-black font-semibold rounded-lg hover:shadow-[0_0_30px_rgba(0,243,255,0.8)] transition-all hover:-translate-y-1">
+              <a href="#projects" className="px-8 py-3 bg-neon-blue text-black font-semibold rounded-lg hover:shadow-[0_0_30px_rgba(0,243,255,0.8)] transition-all hover:-translate-y-1 block text-center">
                 Explore Work
-              </button>
-              <button className="px-8 py-3 bg-white/5 text-white font-semibold rounded-lg hover:bg-white/10 backdrop-blur-md transition-all hover:-translate-y-1 border border-white/10">
+              </a>
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="px-8 py-3 bg-white/5 text-white font-semibold rounded-lg hover:bg-white/10 backdrop-blur-md transition-all hover:-translate-y-1 border border-white/10 block text-center">
                 View Resume
-              </button>
+              </a>
             </div>
           </div>
 
@@ -211,6 +211,60 @@ export default function Home() {
                   )}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 1.5 About Section */}
+      <section id="about" className="py-32 w-full relative z-10 bg-[#020202]">
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="flex flex-col md:flex-row gap-16 items-center">
+            
+            {/* Visual Element */}
+            <div className="w-full md:w-1/2 relative group perspective-1000">
+              <div className="absolute inset-0 bg-gradient-to-tr from-neon-blue to-blue-600 rounded-3xl opacity-20 blur-2xl group-hover:opacity-40 transition-all duration-700"></div>
+              <div className="relative p-8 rounded-3xl bg-[#0a0a0a] border border-white/10 shadow-2xl overflow-hidden min-h-[400px] flex items-center justify-center group-hover:scale-[1.03] group-hover:-translate-y-2 group-hover:shadow-[0_20px_40px_rgba(0,243,255,0.15)] group-hover:border-neon-blue/30 transition-all duration-500">
+                 <div className="absolute top-0 right-0 w-64 h-64 bg-neon-blue/10 blur-[80px] rounded-full mix-blend-screen"></div>
+                 {/* Decorative Code Block */}
+                 <div className="font-mono text-xs md:text-sm text-gray-500/80 p-6 w-full leading-relaxed bg-[#111] rounded-xl border border-white/5 shadow-inner">
+                    <span className="text-pink-500">const</span> <span className="text-blue-400">kabir</span> = {'{'} <br/>
+                    &nbsp;&nbsp;role: <span className="text-green-300">"Full Stack Developer"</span>, <br/>
+                    &nbsp;&nbsp;passion: <span className="text-green-300">"Machine Learning Enthusiast"</span>, <br/>
+                    &nbsp;&nbsp;skills: [<span className="text-green-300">"React"</span>, <span className="text-green-300">"Next.js"</span>, <span className="text-green-300">"Python"</span>, <span className="text-green-300">"C++"</span>], <br/>
+                    &nbsp;&nbsp;motto: <span className="text-green-300">"Building intelligent web systems."</span> <br/>
+                    {'}'}; <br/>
+                    <br/>
+                    <span className="text-pink-500">export default</span> <span className="text-blue-400">kabir</span>;
+                 </div>
+              </div>
+            </div>
+
+            {/* Text Content */}
+            <div className="w-full md:w-1/2 space-y-6">
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm shadow-[0_0_15px_rgba(0,243,255,0.15)] w-fit mb-2">
+                <span className="w-2 h-2 rounded-full bg-neon-blue animate-pulse shadow-[0_0_10px_rgba(0,243,255,0.8)]"></span>
+                <span className="text-xs md:text-sm font-mono text-neon-blue uppercase tracking-widest font-bold">About Me</span>
+              </div>
+              <h3 className="text-3xl md:text-4xl font-semibold tracking-tight">
+                Engineering <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-blue-500">Scalable Solutions</span>
+              </h3>
+              <p className="text-gray-300 text-xl md:text-2xl font-light leading-[1.7]">
+                I am a curious, design-driven Full Stack Developer passionate about crafting seamless and immersive digital experiences. 
+              </p>
+              <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed">
+                My engineering journey blends the precision of complex algorithmic challenges in <span className="text-neon-blue font-medium">C++</span> with the fluid mechanics of modern UI development using <span className="text-neon-blue font-medium">React</span> and <span className="text-neon-blue font-medium">Next.js</span>. Whether I'm scaling backend data pipelines with <span className="text-neon-blue font-medium">Python</span> or polishing micro-animations on the frontend, I thrive entirely at the intersection where beautiful aesthetics meet highly intelligent systems.
+              </p>
+              
+              <div className="pt-6 border-t border-white/10 flex flex-wrap gap-4">
+                 <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="px-8 py-3 bg-neon-blue text-black font-semibold rounded-lg hover:shadow-[0_0_30px_rgba(0,243,255,0.8)] transition-all hover:-translate-y-1 inline-flex items-center gap-2">
+                    View Full Resume
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                 </a>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
