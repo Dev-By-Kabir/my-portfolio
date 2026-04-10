@@ -99,19 +99,37 @@ export default function Home() {
       </div>
 
       {/* Navigation / Header */}
-      <nav className={`fixed top-0 w-full z-50 bg-black/50 backdrop-blur-md border-b justify-between items-center border-white/10 px-8 py-4 flex transition-all duration-[1500ms] delay-300 ${showIntro ? 'opacity-0 translate-y-[-50px]' : 'opacity-100 translate-y-0'}`}>
-        <div className="text-xl font-bold tracking-tighter">
+      {/* Navigation / Header */}
+      <header className={`fixed top-4 left-0 right-0 z-50 px-4 md:px-8 flex justify-between items-center transition-all duration-[1500ms] delay-300 ${showIntro ? 'opacity-0 translate-y-[-50px]' : 'opacity-100 translate-y-0'}`}>
+        {/* Logo */}
+        <div className="text-2xl font-black tracking-tighter drop-shadow-lg text-white">
           PORT<span className="text-neon-blue">FOLIO</span>
         </div>
-        <div className="hidden md:flex gap-8 text-sm font-medium text-gray-400">
-          <a href="#hero" className="hover:text-neon-blue transition-colors">Home</a>
-          <a href="#projects" className="hover:text-neon-blue transition-colors">Work</a>
-          <a href="#deep-dive" className="hover:text-neon-blue transition-colors">Technical Dive</a>
-        </div>
-        <button className="px-5 py-2 text-sm font-semibold rounded-full border border-neon-blue/50 text-neon-blue hover:bg-neon-blue hover:text-black transition-all shadow-[0_0_15px_rgba(0,243,255,0.2)] hover:shadow-[0_0_20px_rgba(0,243,255,0.6)]">
+
+        {/* Floating Nav Pill */}
+        <nav className="hidden md:flex items-center gap-1 px-3 py-2 bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+          {[
+            { name: "Home", href: "#hero" },
+            { name: "About", href: "#about" },
+            { name: "Skills", href: "#skills" },
+            { name: "Projects", href: "#projects" }
+          ].map((item) => (
+            <a 
+              key={item.name} 
+              href={item.href} 
+              className="px-5 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-full transition-all duration-300 ease-out relative group"
+            >
+              {item.name}
+              <span className="absolute inset-x-4 -bottom-px h-px bg-gradient-to-r from-transparent via-neon-blue to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+            </a>
+          ))}
+        </nav>
+
+        {/* Contact Me CTA */}
+        <a href="#contact" className="px-6 py-2.5 text-sm font-bold rounded-full border border-neon-blue/50 text-neon-blue hover:bg-neon-blue hover:text-black transition-all shadow-[0_0_15px_rgba(0,243,255,0.2)] hover:shadow-[0_0_20px_rgba(0,243,255,0.6)]">
           Contact Me
-        </button>
-      </nav>
+        </a>
+      </header>
 
       {/* 1. Hero Section */}
       <section id="hero" className="relative w-full min-h-screen flex items-center justify-center pt-20 overflow-hidden">
