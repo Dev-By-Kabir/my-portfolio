@@ -3,7 +3,7 @@
 import * as THREE from "three";
 import { useRef, useMemo, useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useTexture } from "@react-three/drei";
+import { useTexture, Environment } from "@react-three/drei";
 import {
   BallCollider,
   Physics,
@@ -69,7 +69,7 @@ function createMinimalTexture(name: string, logoImg?: HTMLImageElement | HTMLCan
   const ctx = canvas.getContext("2d");
   if (!ctx) return null;
 
-  // 1. Background - Pure White (Original state restored)
+  // 1. Background - Pure White (Restored for shading-based depth)
   ctx.fillStyle = "#ffffff";
   ctx.fillRect(0, 0, 1024, 1024);
 
@@ -181,11 +181,17 @@ function Sphere({ name, scale, texture, vec = new THREE.Vector3() }: SphereProps
     }, true);
   });
 
-  // MeshBasicMaterial is the ONLY way to guarantee zero "black design" (shading)
-  // It is self-illuminated and ignores all lights/shadows.
+  // MeshPhysicalMaterial provides realistic shading, depth, and physical properties.
+  // We use emissive settings to maintain brightness while allowing for shaded areas.
   const material = useMemo(() => {
-    return new THREE.MeshBasicMaterial({
+    return new THREE.MeshPhysicalMaterial({
       map: finalTexture || null,
+      emissive: "#ffffff",
+      emissiveMap: finalTexture || null,
+      emissiveIntensity: 0.3,
+      metalness: 0.5,
+      roughness: 1,
+      clearcoat: 0.1,
       color: "#ffffff",
       transparent: false,
     });
@@ -305,8 +311,22 @@ export default function SkillsBalls() {
           alpha: true,
           antialias: true,
           powerPreference: "high-performance",
+          stencil: false,
+          depth: false,
         }}
+        onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
       >
+        <ambientLight intensity={1} />
+        <spotLight
+          position={[20, 20, 25]}
+          penumbra={1}
+          angle={0.2}
+          color="white"
+          castShadow
+          shadow-mapSize={[512, 512]}
+        />
+        <directionalLight position={[0, 5, -4]} intensity={2} />
+        <Environment preset="city" environmentIntensity={0.5} />
         <Scene />
       </Canvas>
     </div>
