@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import emailjs from '@emailjs/browser';
+import SkillsBalls from "./components/SkillsBalls";
 
 export default function Home() {
   const [showIntro, setShowIntro] = useState(true);
@@ -9,6 +10,7 @@ export default function Home() {
   const [showName, setShowName] = useState(false);
   const [showTitle, setShowTitle] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [showNav, setShowNav] = useState(false);
 
   // EmailJS Form State
   const formRef = useRef<HTMLFormElement>(null);
@@ -65,6 +67,13 @@ export default function Home() {
       clearTimeout(titleTimer);
       clearTimeout(removeTimer);
     };
+  }, []);
+
+  // Auto-hide navbar: reveal when cursor is within 80px of the top edge
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => setShowNav(e.clientY < 80);
+    window.addEventListener('mousemove', onMove);
+    return () => window.removeEventListener('mousemove', onMove);
   }, []);
 
   return (
@@ -129,9 +138,14 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Navigation / Header */}
-      {/* Navigation / Header */}
-      <header className={`fixed top-4 left-0 right-0 z-50 px-4 md:px-8 flex justify-between items-center transition-all duration-[1500ms] delay-300 ${showIntro ? 'opacity-0 translate-y-[-50px]' : 'opacity-100 translate-y-0'}`}>
+      {/* Navigation / Header – hidden until cursor nears top */}
+      <header className={`fixed top-4 left-0 right-0 z-50 px-4 md:px-8 flex justify-between items-center transition-all duration-500 ${
+        showIntro
+          ? 'opacity-0 -translate-y-14 pointer-events-none'
+          : showNav
+            ? 'opacity-100 translate-y-0 pointer-events-auto'
+            : 'opacity-0 -translate-y-14 pointer-events-none'
+      }`}>
         {/* Logo */}
         <div className="text-2xl font-black tracking-tighter drop-shadow-lg text-white">
           PORT<span className="text-neon-blue">FOLIO</span>
@@ -269,7 +283,47 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. Current Projects Section */}
+      {/* 2. Skills Section */}
+      <section id="skills" className="pt-2 pb-0 w-full relative z-10 bg-[#020202] overflow-hidden">
+        {/* Ambient background blobs */}
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-neon-blue/5 blur-[150px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-violet-600/5 blur-[150px] rounded-full pointer-events-none" />
+
+        {/* Section Header */}
+        <div className="max-w-7xl mx-auto px-8">
+          <div className="flex flex-col items-center text-center mb-0">
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm shadow-[0_0_15px_rgba(0,243,255,0.15)] mb-2">
+              <span className="w-2 h-2 rounded-full bg-neon-blue animate-pulse shadow-[0_0_10px_rgba(0,243,255,0.8)]"></span>
+              <span className="text-xs md:text-sm font-mono text-neon-blue uppercase tracking-widest font-bold">Tech Stack</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-0">
+              My <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-violet-500">Skills</span>
+            </h2>
+          </div>
+
+          {/* Legend */}
+          <div className="flex flex-wrap gap-3 justify-center mt-2 mb-0">
+            {[
+              { label: "Languages",  color: "bg-cyan-400",    ring: "border-cyan-400/40" },
+              { label: "Frameworks", color: "bg-violet-400",  ring: "border-violet-400/40" },
+              { label: "Tools",      color: "bg-emerald-400", ring: "border-emerald-400/40" },
+              { label: "Databases",  color: "bg-orange-400",  ring: "border-orange-400/40" },
+            ].map(({ label, color, ring }) => (
+              <div key={label} className={`flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border ${ring}`}>
+                <span className={`w-2 h-2 rounded-full ${color}`}></span>
+                <span className="text-xs font-mono text-gray-300 uppercase tracking-widest">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Physics arena – full viewport width, pulled up tight */}
+        <div style={{ marginTop: "-8px" }}>
+          <SkillsBalls />
+        </div>
+      </section>
+
+      {/* 3. Current Projects Section */}
       <section id="projects" className="py-32 w-full relative z-10 bg-black">
         <div className="max-w-7xl mx-auto px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16">
