@@ -23,16 +23,20 @@ body {
 /* Custom scrollbar to add to the code-editor feel */
 ::-webkit-scrollbar {
   width: 8px;
-  height: 8px; /* For horizontal scrollbars */
+  height: 8px;
+  /* For horizontal scrollbars */
 }
+
 ::-webkit-scrollbar-track {
   background: #1e1e1e;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #333;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
@@ -42,18 +46,34 @@ body {
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
   .scrollbar-hide {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
   }
 }
 
 /* Hyperdrive Stretch Lines - Star Wars Lightspeed Style */
 @keyframes hyperspace-stretch {
-  0% { transform: rotate(var(--rot)) translateY(-50px) scaleY(0.1); opacity: 0; }
-  10% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { transform: rotate(var(--rot)) translateY(1800px) scaleY(40); opacity: 0; }
+  0% {
+    transform: rotate(var(--rot)) translateY(-50px) scaleY(0.1);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: rotate(var(--rot)) translateY(1800px) scaleY(40);
+    opacity: 0;
+  }
 }
 
 .hyper-streak {
@@ -77,21 +97,40 @@ body {
 
 /* Whiteout flash bang */
 @keyframes whiteout {
-  0% { opacity: 0; }
-  40% { opacity: 1; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 .animate-whiteout {
   animation: whiteout 1.5s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
-  animation-delay: 6s; /* Failsafe if not manually timed */
+  animation-delay: 6s;
+  /* Failsafe if not manually timed */
   will-change: opacity;
 }
 
 @keyframes whiteout-fast {
-  0% { opacity: 0; }
-  20% { opacity: 1; background-color: white;}
-  100% { opacity: 0; background-color: transparent;}
+  0% {
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+    background-color: white;
+  }
+
+  100% {
+    opacity: 0;
+    background-color: transparent;
+  }
 }
 
 .animate-whiteout-fast {
@@ -99,18 +138,53 @@ body {
 }
 
 @keyframes flash-text {
-  0% { opacity: 0; filter: blur(20px) brightness(3); transform: scale(0.8); }
-  20% { opacity: 1; filter: blur(0px) brightness(1); transform: scale(1); }
-  80% { opacity: 1; filter: blur(0px) brightness(1); transform: scale(1.05); }
-  100% { opacity: 0; filter: blur(30px) brightness(0.5); transform: scale(1.3); }
+  0% {
+    opacity: 0;
+    filter: blur(20px) brightness(3);
+    transform: scale(0.8);
+  }
+
+  20% {
+    opacity: 1;
+    filter: blur(0px) brightness(1);
+    transform: scale(1);
+  }
+
+  80% {
+    opacity: 1;
+    filter: blur(0px) brightness(1);
+    transform: scale(1.05);
+  }
+
+  100% {
+    opacity: 0;
+    filter: blur(30px) brightness(0.5);
+    transform: scale(1.3);
+  }
 }
 
 /* Cinematic Falling Letters Physics Sequence */
 @keyframes drop-bounce {
-  0% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
-  60% { transform: translateY(20px) scale(0.9); opacity: 1; }
-  85% { transform: translateY(-5px) scale(1.05); opacity: 1; }
-  100% { transform: translateY(0) scale(1); opacity: 1; filter: blur(0); }
+  0% {
+    transform: translateY(-100vh) scale(1.5);
+    opacity: 0;
+  }
+
+  60% {
+    transform: translateY(20px) scale(0.9);
+    opacity: 1;
+  }
+
+  85% {
+    transform: translateY(-5px) scale(1.05);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
 }
 
 .falling-letter {
@@ -127,57 +201,149 @@ body {
 /* ===== SKILLS BOUNCING BALLS ===== */
 
 @keyframes skillBounce {
-  0%   { transform: translateY(0px) scale(1); }
-  30%  { transform: translateY(-28px) scale(1.06); }
-  50%  { transform: translateY(0px) scale(0.95); }
-  65%  { transform: translateY(-12px) scale(1.03); }
-  80%  { transform: translateY(0px) scale(0.98); }
-  90%  { transform: translateY(-5px) scale(1.01); }
-  100% { transform: translateY(0px) scale(1); }
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+
+  30% {
+    transform: translateY(-28px) scale(1.06);
+  }
+
+  50% {
+    transform: translateY(0px) scale(0.95);
+  }
+
+  65% {
+    transform: translateY(-12px) scale(1.03);
+  }
+
+  80% {
+    transform: translateY(0px) scale(0.98);
+  }
+
+  90% {
+    transform: translateY(-5px) scale(1.01);
+  }
+
+  100% {
+    transform: translateY(0px) scale(1);
+  }
 }
 
 @keyframes skillBounceAlt {
-  0%   { transform: translateY(0px) scale(1); }
-  25%  { transform: translateY(-22px) scale(1.05); }
-  45%  { transform: translateY(0px) scale(0.94); }
-  60%  { transform: translateY(-10px) scale(1.02); }
-  75%  { transform: translateY(0px) scale(0.98); }
-  88%  { transform: translateY(-4px) scale(1.01); }
-  100% { transform: translateY(0px) scale(1); }
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+
+  25% {
+    transform: translateY(-22px) scale(1.05);
+  }
+
+  45% {
+    transform: translateY(0px) scale(0.94);
+  }
+
+  60% {
+    transform: translateY(-10px) scale(1.02);
+  }
+
+  75% {
+    transform: translateY(0px) scale(0.98);
+  }
+
+  88% {
+    transform: translateY(-4px) scale(1.01);
+  }
+
+  100% {
+    transform: translateY(0px) scale(1);
+  }
 }
 
 @keyframes skillBounceSmall {
-  0%   { transform: translateY(0px) scale(1); }
-  28%  { transform: translateY(-18px) scale(1.04); }
-  48%  { transform: translateY(0px) scale(0.96); }
-  63%  { transform: translateY(-8px) scale(1.02); }
-  78%  { transform: translateY(0px) scale(0.99); }
-  100% { transform: translateY(0px) scale(1); }
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+
+  28% {
+    transform: translateY(-18px) scale(1.04);
+  }
+
+  48% {
+    transform: translateY(0px) scale(0.96);
+  }
+
+  63% {
+    transform: translateY(-8px) scale(1.02);
+  }
+
+  78% {
+    transform: translateY(0px) scale(0.99);
+  }
+
+  100% {
+    transform: translateY(0px) scale(1);
+  }
 }
 
 @keyframes glowPulse {
-  0%, 100% { box-shadow: 0 8px 32px rgba(0,243,255,0.25), inset 0 1px 0 rgba(255,255,255,0.15); }
-  50%       { box-shadow: 0 12px 48px rgba(0,243,255,0.5), inset 0 1px 0 rgba(255,255,255,0.25); }
+
+  0%,
+  100% {
+    box-shadow: 0 8px 32px rgba(0, 243, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  50% {
+    box-shadow: 0 12px 48px rgba(0, 243, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
 }
 
 @keyframes glowPulseWarm {
-  0%, 100% { box-shadow: 0 8px 32px rgba(139,92,246,0.3), inset 0 1px 0 rgba(255,255,255,0.15); }
-  50%       { box-shadow: 0 12px 48px rgba(139,92,246,0.55), inset 0 1px 0 rgba(255,255,255,0.25); }
+
+  0%,
+  100% {
+    box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  50% {
+    box-shadow: 0 12px 48px rgba(139, 92, 246, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
 }
 
 @keyframes glowPulseGreen {
-  0%, 100% { box-shadow: 0 8px 32px rgba(34,197,94,0.25), inset 0 1px 0 rgba(255,255,255,0.15); }
-  50%       { box-shadow: 0 12px 48px rgba(34,197,94,0.5), inset 0 1px 0 rgba(255,255,255,0.25); }
+
+  0%,
+  100% {
+    box-shadow: 0 8px 32px rgba(34, 197, 94, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  50% {
+    box-shadow: 0 12px 48px rgba(34, 197, 94, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
 }
 
 @keyframes glowPulseOrange {
-  0%, 100% { box-shadow: 0 8px 32px rgba(249,115,22,0.25), inset 0 1px 0 rgba(255,255,255,0.15); }
-  50%       { box-shadow: 0 12px 48px rgba(249,115,22,0.5), inset 0 1px 0 rgba(255,255,255,0.25); }
+
+  0%,
+  100% {
+    box-shadow: 0 8px 32px rgba(249, 115, 22, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  50% {
+    box-shadow: 0 12px 48px rgba(249, 115, 22, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
 }
 
 @keyframes floatIn {
-  0%   { opacity: 0; transform: translateY(60px) scale(0.5); }
-  100% { opacity: 1; transform: translateY(0px) scale(1); }
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.5);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
 }
 
 .skill-ball {
@@ -186,24 +352,34 @@ body {
 
 .skill-ball-bounce-1 {
   animation: floatIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both,
-             skillBounce 2.2s cubic-bezier(0.33, 1, 0.68, 1) infinite;
+    skillBounce 2.2s cubic-bezier(0.33, 1, 0.68, 1) infinite;
   animation-delay: var(--fd, 0s), calc(var(--fd, 0s) + 0.6s);
 }
 
 .skill-ball-bounce-2 {
   animation: floatIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both,
-             skillBounceAlt 2.6s cubic-bezier(0.33, 1, 0.68, 1) infinite;
+    skillBounceAlt 2.6s cubic-bezier(0.33, 1, 0.68, 1) infinite;
   animation-delay: var(--fd, 0s), calc(var(--fd, 0s) + 0.6s);
 }
 
 .skill-ball-bounce-3 {
   animation: floatIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both,
-             skillBounceSmall 1.9s cubic-bezier(0.33, 1, 0.68, 1) infinite;
+    skillBounceSmall 1.9s cubic-bezier(0.33, 1, 0.68, 1) infinite;
   animation-delay: var(--fd, 0s), calc(var(--fd, 0s) + 0.6s);
 }
 
-.skill-glow-blue  { animation: glowPulse 2.5s ease-in-out infinite; }
-.skill-glow-purple { animation: glowPulseWarm 2.5s ease-in-out infinite; }
-.skill-glow-green  { animation: glowPulseGreen 2.5s ease-in-out infinite; }
-.skill-glow-orange { animation: glowPulseOrange 2.5s ease-in-out infinite; }
+.skill-glow-blue {
+  animation: glowPulse 2.5s ease-in-out infinite;
+}
 
+.skill-glow-purple {
+  animation: glowPulseWarm 2.5s ease-in-out infinite;
+}
+
+.skill-glow-green {
+  animation: glowPulseGreen 2.5s ease-in-out infinite;
+}
+
+.skill-glow-orange {
+  animation: glowPulseOrange 2.5s ease-in-out infinite;
+}

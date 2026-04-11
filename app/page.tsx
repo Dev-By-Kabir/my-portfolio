@@ -11,6 +11,7 @@ export default function Home() {
   const [showTitle, setShowTitle] = useState(false);
   const [progress, setProgress] = useState(0);
   const [showNav, setShowNav] = useState(false);
+  const [isAtTop, setIsAtTop] = useState(true);
 
   // EmailJS Form State
   const formRef = useRef<HTMLFormElement>(null);
@@ -60,20 +61,57 @@ export default function Home() {
     
     // Complete entire intro sequence revealing the portfolio (Total: 12.5s)
     const removeTimer = setTimeout(() => setShowIntro(false), 12500);
+
+    // Global ultra-aggressive console filter to silence persistent hardware/shader warnings
+    // Mostly from third-party runtimes like Spline and R3F internal dependencies
+    const silence = (...args: any[]) => {
+      const msg = args[0]?.toString() || "";
+      return (
+        msg.includes("THREE.Clock") || 
+        msg.includes("PCFSoftShadowMap") || 
+        msg.includes("deprecated") ||
+        msg.includes("gradient instruction") ||
+        msg.includes("X4122") || 
+        msg.includes("X3595") ||
+        msg.includes("accuracy") ||
+        msg.includes("Program Info Log")
+      );
+    };
+
+    const originalLog = console.log;
+    const originalInfo = console.info;
+    const originalWarn = console.warn;
+    const originalError = console.error;
+    
+    console.log = (...args) => { if (!silence(...args)) originalLog(...args); };
+    console.info = (...args) => { if (!silence(...args)) originalInfo(...args); };
+    console.warn = (...args) => { if (!silence(...args)) originalWarn(...args); };
+    console.error = (...args) => { if (!silence(...args)) originalError(...args); };
     
     return () => {
       clearTimeout(progressTimer);
       clearTimeout(transitionTimer);
       clearTimeout(titleTimer);
       clearTimeout(removeTimer);
+      console.log = originalLog;
+      console.info = originalInfo;
+      console.warn = originalWarn;
+      console.error = originalError;
     };
   }, []);
 
-  // Auto-hide navbar: reveal when cursor is within 80px of the top edge
+  // Auto-hide navbar: reveal when cursor is within 80px of the top edge OR we are at the very top of the page
   useEffect(() => {
     const onMove = (e: MouseEvent) => setShowNav(e.clientY < 80);
+    const onScroll = () => setIsAtTop(window.scrollY < 100);
+    
     window.addEventListener('mousemove', onMove);
-    return () => window.removeEventListener('mousemove', onMove);
+    window.addEventListener('scroll', onScroll);
+    
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
   return (
@@ -142,7 +180,7 @@ export default function Home() {
       <header className={`fixed top-4 left-0 right-0 z-50 px-4 md:px-8 flex justify-between items-center transition-all duration-500 ${
         showIntro
           ? 'opacity-0 -translate-y-14 pointer-events-none'
-          : showNav
+          : (isAtTop || showNav)
             ? 'opacity-100 translate-y-0 pointer-events-auto'
             : 'opacity-0 -translate-y-14 pointer-events-none'
       }`}>
@@ -301,20 +339,7 @@ export default function Home() {
             </h2>
           </div>
 
-          {/* Legend */}
-          <div className="flex flex-wrap gap-3 justify-center mt-2 mb-0">
-            {[
-              { label: "Languages",  color: "bg-cyan-400",    ring: "border-cyan-400/40" },
-              { label: "Frameworks", color: "bg-violet-400",  ring: "border-violet-400/40" },
-              { label: "Tools",      color: "bg-emerald-400", ring: "border-emerald-400/40" },
-              { label: "Databases",  color: "bg-orange-400",  ring: "border-orange-400/40" },
-            ].map(({ label, color, ring }) => (
-              <div key={label} className={`flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border ${ring}`}>
-                <span className={`w-2 h-2 rounded-full ${color}`}></span>
-                <span className="text-xs font-mono text-gray-300 uppercase tracking-widest">{label}</span>
-              </div>
-            ))}
-          </div>
+
         </div>
 
         {/* Physics arena – full viewport width, pulled up tight */}
