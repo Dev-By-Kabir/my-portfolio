@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import emailjs from '@emailjs/browser';
 import SkillsBalls from "./components/SkillsBalls";
+import ScrollIndicator from "./components/ScrollIndicator";
 
 export default function Home() {
   const [showIntro, setShowIntro] = useState(true);
@@ -12,6 +13,7 @@ export default function Home() {
   const [progress, setProgress] = useState(0);
   const [showNav, setShowNav] = useState(false);
   const [isAtTop, setIsAtTop] = useState(true);
+  const [isAtBottom, setIsAtBottom] = useState(false);
 
   // EmailJS Form State
   const formRef = useRef<HTMLFormElement>(null);
@@ -44,8 +46,15 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // Start progress bar animation
-    const progressTimer = setTimeout(() => setProgress(100), 100);
+    // Staged organic loading sequence to sync with the Spline bot greeting
+    // Phase 1: Rapid initialization
+    const p1 = setTimeout(() => setProgress(35), 500);
+    // Phase 2: Steady crawl while bot is performing 'Hi' animation
+    const p2 = setTimeout(() => setProgress(65), 3000);
+    // Phase 3: Detailed environment checks (slower crawl)
+    const p3 = setTimeout(() => setProgress(88), 6000);
+    // Phase 4: Final rush before warp
+    const p4 = setTimeout(() => setProgress(100), 8000);
 
     // After 8.5 seconds (giving Spline time to wave), start simple crossfade transition directly to the name
     const transitionTimer = setTimeout(() => {
@@ -89,7 +98,10 @@ export default function Home() {
     console.error = (...args) => { if (!silence(...args)) originalError(...args); };
     
     return () => {
-      clearTimeout(progressTimer);
+      clearTimeout(p1);
+      clearTimeout(p2);
+      clearTimeout(p3);
+      clearTimeout(p4);
       clearTimeout(transitionTimer);
       clearTimeout(titleTimer);
       clearTimeout(removeTimer);
@@ -103,7 +115,12 @@ export default function Home() {
   // Auto-hide navbar: reveal when cursor is within 80px of the top edge OR we are at the very top of the page
   useEffect(() => {
     const onMove = (e: MouseEvent) => setShowNav(e.clientY < 80);
-    const onScroll = () => setIsAtTop(window.scrollY < 100);
+    const onScroll = () => {
+      setIsAtTop(window.scrollY < 100);
+      // Check if user is at the bottom of the page
+      const isBottom = window.innerHeight + window.scrollY >= document.documentElement.offsetHeight - 100;
+      setIsAtBottom(isBottom);
+    };
     
     window.addEventListener('mousemove', onMove);
     window.addEventListener('scroll', onScroll);
@@ -169,9 +186,16 @@ export default function Home() {
           {/* Loading Bar */}
           <div className="w-64 h-1.5 bg-gray-900 rounded-full overflow-hidden shadow-[0_0_10px_rgba(0,243,255,0.2)]">
             <div 
-              className="h-full bg-neon-blue rounded-full shadow-[0_0_10px_rgba(0,243,255,1)] transition-all ease-[cubic-bezier(0.25,0.1,0.25,1)]" 
-              style={{ width: `${progress}%`, transitionDuration: '8400ms' }}
-            ></div>
+              className="h-full bg-neon-blue rounded-full shadow-[0_0_15px_rgba(0,243,255,1)] transition-all ease-in-out relative" 
+              style={{ 
+                width: `${progress}%`, 
+                // Dynamically adjust duration to match stage lengths
+                transitionDuration: progress <= 35 ? '1500ms' : (progress <= 65 ? '2500ms' : '2000ms') 
+              }}
+            >
+              {/* Animated Shimmer Overay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent w-full h-full -translate-x-full animate-shimmer"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -530,6 +554,9 @@ export default function Home() {
             </div>
         </div>
       </footer>
+
+      {/* Scroll Down Indicator - Vanishes at bottom */}
+      <ScrollIndicator visible={!showIntro && !isAtBottom} />
 
     </main>
   );
