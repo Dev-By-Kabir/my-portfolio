@@ -141,13 +141,13 @@ export default function Home() {
       {/* Cinematic Text Flashes overlaid on black after warp */}
       <div className={`fixed inset-0 z-[500] bg-[#020202] flex flex-col items-center justify-center transition-opacity duration-1000 ${showIntro && warpEnded ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
         {showName && (
-            <h1 className="text-xl md:text-3xl lg:text-5xl font-black text-white drop-shadow-[0_0_40px_rgba(255,255,255,1)] absolute text-center uppercase tracking-[0.2em] md:tracking-[0.3em] animate-title-flash w-full px-4 overflow-hidden">
+            <h1 className="text-xl md:text-3xl lg:text-5xl font-black text-white absolute text-center uppercase tracking-[0.2em] md:tracking-[0.3em] animate-title-flash w-full px-4 overflow-hidden">
               KABIR PATEL
             </h1>
         )}
         {showTitle && (
             <h2 className="text-xl md:text-3xl lg:text-5xl font-sans font-light text-white tracking-[0.2em] md:tracking-[0.3em] animate-title-flash absolute text-center uppercase w-full px-4 overflow-hidden">
-              SOFTWARE <span className="font-bold text-neon-blue drop-shadow-[0_0_20px_rgba(0,243,255,0.8)]">DEVELOPER</span>
+              SOFTWARE <span className="font-bold text-neon-blue">DEVELOPER</span>
             </h2>
         )}
       </div>
@@ -176,17 +176,17 @@ export default function Home() {
         </div>
 
         <div className={`z-20 text-center pointer-events-none mt-[50vh] bg-black/40 px-10 py-8 rounded-3xl backdrop-blur-md border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.9)] flex flex-col items-center transition-all duration-500 will-change-transform ${warpEnded ? 'opacity-0 scale-[0.9]' : 'opacity-100'}`}>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-4 drop-shadow-2xl">
-            Hello, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-blue-500 drop-shadow-[0_0_20px_rgba(0,243,255,0.8)]">Kabir Patel</span>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-4">
+            Hello, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-blue-500">Kabir Patel</span>
           </h1>
           <p className="text-gray-400 font-mono tracking-widest uppercase text-sm mb-6 flex gap-2">
             <span className="w-2 h-2 rounded-full bg-neon-blue animate-pulse mt-1"></span> Initializing environment...
           </p>
           
           {/* Loading Bar */}
-          <div className="w-64 h-1.5 bg-gray-900 rounded-full overflow-hidden shadow-[0_0_10px_rgba(0,243,255,0.2)]">
+          <div className="w-64 h-1.5 bg-gray-900 rounded-full overflow-hidden">
             <div 
-              className="h-full bg-neon-blue rounded-full shadow-[0_0_15px_rgba(0,243,255,1)] transition-all ease-in-out relative" 
+              className="h-full bg-neon-blue rounded-full transition-all ease-in-out relative" 
               style={{ 
                 width: `${progress}%`, 
                 // Dynamically adjust duration to match stage lengths
@@ -252,8 +252,8 @@ export default function Home() {
               <span className="text-xs font-mono text-neon-blue uppercase tracking-widest">Available for Work</span>
             </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight">
-              Hi, I’m <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-blue-500 drop-shadow-[0_0_30px_rgba(0,243,255,0.6)]">Kabir Patel</span> <br />
-              <span className="text-3xl md:text-4xl lg:text-5xl font-bold text-white/90 drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] block mt-4">
+              Hi, I’m <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-blue-500">Kabir Patel</span> <br />
+              <span className="text-3xl md:text-4xl lg:text-5xl font-bold text-white/90 block mt-4">
                 Full Stack Developer & <br className="hidden lg:block" /> Machine Learning Enthusiast
               </span>
             </h1>
