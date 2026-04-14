@@ -544,14 +544,87 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/10 bg-black py-16">
-        <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="text-xl font-bold tracking-tighter text-white">
-                PORT<span className="text-neon-blue">FOLIO</span>
+      <footer className="relative bg-[#050505] pt-24 pb-12 overflow-hidden border-t border-white/5">
+        {/* Ambient Glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-neon-blue/20 to-transparent"></div>
+        
+        <div className="max-w-7xl mx-auto px-8 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            {/* Column 1: Brand & Status */}
+            <div className="md:col-span-2 space-y-6">
+              <div className="text-2xl font-black tracking-tighter text-white">
+                PORT<span className="text-neon-blue font-black">FOLIO</span>
+              </div>
+              <p className="text-gray-400 font-light max-w-sm leading-relaxed">
+                Building the next generation of spatial web experiences. Focused on merging high-end aesthetics with intelligent software solutions.
+              </p>
+              <div className="flex items-center gap-3 px-4 py-2 bg-white/5 border border-white/10 rounded-full w-fit">
+                <span className="w-2 h-2 rounded-full bg-neon-blue animate-pulse shadow-[0_0_10px_rgba(0,243,255,0.8)]"></span>
+                <span className="text-xs font-mono text-gray-400 uppercase tracking-widest">Available for hire</span>
+              </div>
             </div>
-            <div className="font-mono text-sm text-gray-500">
-                © {new Date().getFullYear()} All rights reserved.
+
+            {/* Column 2: Quick Links */}
+            <div className="space-y-6">
+              <h4 className="text-sm font-bold uppercase tracking-widest text-white/50">Navigation</h4>
+              <ul className="space-y-4">
+                {[
+                  { name: "Home", href: "#hero" },
+                  { name: "About", href: "#about" },
+                  { name: "Skills", href: "#skills" },
+                  { name: "Projects", href: "#projects" }
+                ].map((link) => (
+                  <li key={link.name}>
+                    <a href={link.href} className="text-gray-400 hover:text-neon-blue transition-colors duration-300 font-light flex items-center gap-2 group">
+                      <span className="w-1.5 h-1.5 rounded-full bg-neon-blue scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+                      {link.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
+
+            {/* Column 3: Socials */}
+            <div className="space-y-6">
+              <h4 className="text-sm font-bold uppercase tracking-widest text-white/50">Connect</h4>
+              <ul className="space-y-4">
+                {[
+                  { name: "GitHub", href: "https://github.com/Dev-By-Kabir" },
+                  { name: "LinkedIn", href: "https://www.linkedin.com/in/kabir-patel-738772275/" },
+                  { name: "Gmail", href: "mailto:kabirpatel2005@gmail.com" }
+                ].map((social) => (
+                  <li key={social.name}>
+                    <a 
+                      href={social.href} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-gray-400 hover:text-white transition-colors duration-300 font-light flex items-center gap-2"
+                    >
+                      {social.name} <span className="text-[10px] text-neon-blue opacity-50">↗</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="text-sm text-gray-500 font-mono">
+              © {new Date().getFullYear()} Kabir Patel. Built with <span className="text-white hover:text-neon-blue transition-colors cursor-default">Next.js</span> & <span className="text-white hover:text-neon-blue transition-colors cursor-default">Tailwind</span>.
+            </div>
+            <button 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="group flex items-center gap-2 text-sm font-bold text-gray-400 hover:text-white transition-all"
+            >
+              Back to Top
+              <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-neon-blue/50 group-hover:text-neon-blue transition-all">
+                <svg className="w-4 h-4 -rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </div>
+            </button>
+          </div>
         </div>
       </footer>
 
