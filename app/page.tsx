@@ -68,8 +68,8 @@ export default function Home() {
         setShowTitle(true);
     }, 10500);
     
-    // Complete entire intro sequence revealing the portfolio (Total: 12.5s)
-    const removeTimer = setTimeout(() => setShowIntro(false), 12500);
+    // Complete entire intro sequence revealing the portfolio (Total: 11.5s)
+    const removeTimer = setTimeout(() => setShowIntro(false), 11500);
 
     // Global ultra-aggressive console filter to silence persistent hardware/shader warnings
     // Mostly from third-party runtimes like Spline and R3F internal dependencies
@@ -141,13 +141,20 @@ export default function Home() {
       {/* Cinematic Text Flashes overlaid on black after warp */}
       <div className={`fixed inset-0 z-[500] bg-[#020202] flex flex-col items-center justify-center transition-opacity duration-1000 ${showIntro && warpEnded ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
         {showName && (
-            <h1 className="text-xl md:text-3xl lg:text-5xl font-black text-white absolute text-center uppercase tracking-[0.2em] md:tracking-[0.3em] animate-title-flash w-full px-4 overflow-hidden">
+            <h1 className="text-4xl md:text-6xl lg:text-[5.5rem] font-black text-white absolute text-center uppercase tracking-[0.2em] md:tracking-[0.3em] animate-cinematic-name w-full px-4 overflow-hidden">
               KABIR PATEL
             </h1>
         )}
         {showTitle && (
-            <h2 className="text-xl md:text-3xl lg:text-5xl font-sans font-light text-white tracking-[0.2em] md:tracking-[0.3em] animate-title-flash absolute text-center uppercase w-full px-4 overflow-hidden">
-              SOFTWARE <span className="font-bold text-neon-blue">DEVELOPER</span>
+            <h2 className="text-xl md:text-3xl lg:text-5xl font-sans font-light animate-cinematic-title absolute text-center uppercase w-full px-4 overflow-hidden flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6">
+              <span className="text-white tracking-[0.2em] md:tracking-[0.3em]">SOFTWARE</span>
+              <span className="flex gap-1 md:gap-1.5 lg:gap-2">
+                {"DEVELOPER".split("").map((letter, i) => (
+                  <span key={i} className="flex items-center justify-center w-6 h-8 md:w-10 md:h-12 lg:w-14 lg:h-[4.5rem] bg-[#0a0a0a]/50 border border-white/10 rounded-md md:rounded-lg backdrop-blur-xl text-transparent bg-clip-text bg-gradient-to-br from-neon-blue to-blue-600 font-bold shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)] hover:border-neon-blue/50 transition-colors">
+                    {letter}
+                  </span>
+                ))}
+              </span>
             </h2>
         )}
       </div>
