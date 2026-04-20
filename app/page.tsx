@@ -551,29 +551,37 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="relative bg-[#050505] pt-24 pb-12 overflow-hidden border-t border-white/5">
-        {/* Ambient Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-neon-blue/20 to-transparent"></div>
+      <footer className="relative bg-[#020202] pt-28 pb-12 overflow-hidden border-t border-white/10">
+
         
         <div className="max-w-7xl mx-auto px-8 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-            {/* Column 1: Brand & Status */}
-            <div className="md:col-span-2 space-y-6">
-              <div className="text-2xl font-black tracking-tighter text-white">
-                PORT<span className="text-neon-blue font-black">FOLIO</span>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20 animate-fade-in-up">
+            
+            {/* Column 1: Brand & Status (Takes up 5 columns) */}
+            <div className="md:col-span-5 space-y-6">
+              <div className="text-3xl font-black tracking-tighter text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                PORT<span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-blue-500">FOLIO</span>
               </div>
-              <p className="text-gray-400 font-light max-w-sm leading-relaxed">
+              <p className="text-gray-400/80 font-light max-w-sm leading-relaxed text-sm md:text-base">
                 Building the next generation of spatial web experiences. Focused on merging high-end aesthetics with intelligent software solutions.
               </p>
-              <div className="flex items-center gap-3 px-4 py-2 bg-white/5 border border-white/10 rounded-full w-fit">
-                <span className="w-2 h-2 rounded-full bg-neon-blue animate-pulse shadow-[0_0_10px_rgba(0,243,255,0.8)]"></span>
-                <span className="text-xs font-mono text-gray-400 uppercase tracking-widest">Available for hire</span>
+              <div className="flex items-center gap-3 px-4 py-2.5 bg-gradient-to-r from-white/5 to-transparent border border-white/10 rounded-full w-fit hover:border-neon-blue/30 transition-colors shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] group cursor-default mt-4 border-l-neon-blue">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon-blue opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-neon-blue shadow-[0_0_10px_rgba(0,243,255,0.8)]"></span>
+                </span>
+                <span className="text-xs font-mono text-gray-300 uppercase tracking-widest group-hover:text-white transition-colors">Available for new opportunities</span>
               </div>
             </div>
 
-            {/* Column 2: Quick Links */}
-            <div className="space-y-6">
-              <h4 className="text-sm font-bold uppercase tracking-widest text-white/50">Navigation</h4>
+            {/* Spacer */}
+            <div className="hidden md:block md:col-span-1"></div>
+
+            {/* Column 2: Quick Links (Takes up 3 columns) */}
+            <div className="md:col-span-3 space-y-6">
+              <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-white/40 mb-6 flex items-center gap-2">
+                <span className="w-2 h-px bg-white/40"></span> Navigation
+              </h4>
               <ul className="space-y-4">
                 {[
                   { name: "Home", href: "#hero" },
@@ -582,32 +590,37 @@ export default function Home() {
                   { name: "Projects", href: "#projects" }
                 ].map((link) => (
                   <li key={link.name}>
-                    <a href={link.href} className="text-gray-400 hover:text-neon-blue transition-colors duration-300 font-light flex items-center gap-2 group">
-                      <span className="w-1.5 h-1.5 rounded-full bg-neon-blue scale-0 group-hover:scale-100 transition-transform duration-300"></span>
-                      {link.name}
+                    <a href={link.href} className="text-gray-400 hover:text-white transition-all duration-300 font-light flex items-center gap-3 group w-fit">
+                      <span className="w-0 h-px bg-neon-blue group-hover:w-4 transition-all duration-300 ease-out"></span>
+                      <span className="group-hover:translate-x-1 group-hover:text-neon-blue transition-transform duration-300">{link.name}</span>
                     </a>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Column 3: Socials */}
-            <div className="space-y-6">
-              <h4 className="text-sm font-bold uppercase tracking-widest text-white/50">Connect</h4>
+            {/* Column 3: Socials (Takes up 3 columns) */}
+            <div className="md:col-span-3 space-y-6">
+              <h4 className="text-xs font-mono font-bold uppercase tracking-widest text-white/40 mb-6 flex items-center gap-2">
+                <span className="w-2 h-px bg-white/40"></span> Connect
+              </h4>
               <ul className="space-y-4">
                 {[
                   { name: "GitHub", href: "https://github.com/Dev-By-Kabir" },
                   { name: "LinkedIn", href: "https://www.linkedin.com/in/kabir-patel-738772275/" },
-                  { name: "Gmail", href: "mailto:kabirpatel2005@gmail.com" }
+                  { name: "Email", href: "mailto:kabirpatel2005@gmail.com" }
                 ].map((social) => (
                   <li key={social.name}>
                     <a 
                       href={social.href} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="text-gray-400 hover:text-white transition-colors duration-300 font-light flex items-center gap-2"
+                      className="text-gray-400 hover:text-white transition-all duration-300 font-light flex items-center gap-3 group w-fit"
                     >
-                      {social.name} <span className="text-[10px] text-neon-blue opacity-50">↗</span>
+                      <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-neon-blue/10 group-hover:border-neon-blue/30 group-hover:shadow-[0_0_10px_rgba(0,243,255,0.2)] transition-all">
+                        <span className="text-[10px] text-gray-400 group-hover:text-neon-blue group-hover:rotate-45 transition-all">↗</span>
+                      </div>
+                      <span className="group-hover:translate-x-1 transition-transform duration-300">{social.name}</span>
                     </a>
                   </li>
                 ))}
@@ -616,18 +629,20 @@ export default function Home() {
           </div>
 
           {/* Bottom Bar */}
-          <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-sm text-gray-500 font-mono">
-              © {new Date().getFullYear()} Kabir Patel. Built with <span className="text-white hover:text-neon-blue transition-colors cursor-default">Next.js</span> & <span className="text-white hover:text-neon-blue transition-colors cursor-default">Tailwind</span>.
+          <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="text-xs md:text-sm text-gray-500/80 font-mono flex flex-col md:flex-row items-center gap-2 text-center md:text-left">
+              <span>© {new Date().getFullYear()} Kabir Patel.</span>
+              <span className="hidden md:block w-1 h-1 bg-gray-700 rounded-full"></span>
+              <span>All rights reserved.</span>
             </div>
             <button 
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="group flex items-center gap-2 text-sm font-bold text-gray-400 hover:text-white transition-all"
+              onClick={() => window.scroll({ top: 0, behavior: 'smooth' })}
+              className="group flex items-center gap-3 text-xs md:text-sm font-bold text-gray-400 hover:text-white transition-all px-4 py-2 rounded-full hover:bg-white/5 border border-transparent hover:border-white/10 hover:shadow-[0_0_15px_rgba(255,255,255,0.05)]"
             >
-              Back to Top
-              <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-neon-blue/50 group-hover:text-neon-blue transition-all">
-                <svg className="w-4 h-4 -rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              <span className="tracking-widest">BACK TO TOP</span>
+              <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-neon-blue group-hover:text-black transition-all duration-300 shadow-[0_0_10px_rgba(0,0,0,0.5)] group-hover:shadow-[0_0_15px_rgba(0,243,255,0.5)] group-hover:-translate-y-1">
+                <svg className="w-3.5 h-3.5 -rotate-90 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </div>
             </button>
